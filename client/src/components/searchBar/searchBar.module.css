@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+}
+
+.input{
+    height: 3em;
+}
+
+.input input{
+    width: 25em;
+    height: 3em;
+    border: 3px solid #9BA4B5;
+    outline: none;
+}
+
+.input button{
+    width: 5em;
+    height: 3em;
+    border-style: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 0 5px 5px 0;
+    color: black;
+    background-color: #9BA4B5;
+    font-family: 'IBM Plex Mono', monospace;
+}

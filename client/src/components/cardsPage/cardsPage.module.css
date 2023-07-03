@@ -1,0 +1,14 @@
+.container{
+    background-color: #394867;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    height: 100vh;
+}
+
+.loading{
+    background-color: #F1F6F9;
+    align-self: center;
+    padding: 50px;
+    border-radius: 10px;
+}

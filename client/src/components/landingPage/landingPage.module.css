@@ -1,0 +1,100 @@
+.container{
+   background-color: #52adce;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.image{
+    background-image: url('../../image/fondoAlternativo.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    grid-column-start: 1;
+    height: 100%;
+    width: 100%;
+}
+
+.start{
+    grid-column-start: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.start h1 {
+    margin-bottom: 20px;
+}
+
+h5{
+    margin-top: 40px;
+    color: black;
+}
+
+.start button {
+    height: 3em;
+    width: 8em;
+    border: none;
+    border-radius: 10em;
+    background: #016DD9;
+    font-size: 17px;
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: 500;
+   }
+   
+   .start button:hover {
+    animation: shake3856 0.3s linear infinite both;
+   }
+   
+   @keyframes shake3856 {
+    0% {
+     -webkit-transform: translate(0);
+     transform: translate(0);
+    }
+   
+    20% {
+     -webkit-transform: translate(-2px, 2px);
+     transform: translate(-2px, 2px);
+    }
+   
+    40% {
+     -webkit-transform: translate(-2px, -2px);
+     transform: translate(-2px, -2px);
+    }
+   
+    60% {
+     -webkit-transform: translate(2px, 2px);
+     transform: translate(2px, 2px);
+    }
+   
+    80% {
+     -webkit-transform: translate(2px, -2px);
+     transform: translate(2px, -2px);
+    }
+   
+    100% {
+     -webkit-transform: translate(0);
+     transform: translate(0);
+    }
+   }
+
+   @media (max-width: 768px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    } 
+    .image{
+        background-image: url('../../image/fondoAlternativoMobile.gif');
+        width: 100%;
+        height: 50%;
+        position: static;
+    }
+}
+   
