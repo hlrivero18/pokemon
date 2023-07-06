@@ -1,0 +1,10 @@
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.form{
+    display: grid;
+    width: 500px;
+    justify-content: center;
+}

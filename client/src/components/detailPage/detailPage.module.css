@@ -1,0 +1,26 @@
+.container{
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container div{
+    background-color: #fdeca6;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.info{
+    text-align: center;
+}
+
+.info h1 {
+    margin-bottom: 10px;
+}
+
+.imagen{
+    width: 180px;
+    height: 180px;
+}

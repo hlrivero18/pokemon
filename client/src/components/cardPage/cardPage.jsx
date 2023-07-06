@@ -8,7 +8,7 @@ export function CardPage({ pokemon }) {
     return (
         <>
         {id &&    
-        <Link className={style.link} to={`detail/${id}`}>
+        <Link className={style.link} to={`/detail/${id}`}>
             <div className={style.container}>
                 <img src={imagen} alt="imagen de un pokemon" />
                 <div className={style.info}>

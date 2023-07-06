@@ -21,7 +21,7 @@ export function CardsPage() {
     return (
         <div className={style.container}>
             {pokemones === null ?
-                (<p className={style.loading}>...Loadign</p>)
+                (<p className={style.loading}>...Cargando</p>)
                 : (pokemones.map((pokemon) => (
                     <CardPage key={pokemon.id} pokemon={pokemon} />
                 ))

@@ -3,8 +3,10 @@ import './App.css';
 import { LandingPage } from './components/landingPage/landingPage';
 import {NavBar} from './components/navBar/navBar'
 import { CardsPage } from './components/cardsPage/cardsPage';
+import { DetailPage } from './components/detailPage/detailPage';
 //dependecias
 import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { FormPage } from './components/formPage/formPage';
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
       <Routes>
         <Route path='/' element={<LandingPage/>}/>
         <Route path='/home' element={<CardsPage/>}/>
+        <Route path='/detail/:id' Component={DetailPage}/>
+        <Route path='/create' Component={FormPage}/>
       </Routes>
     </div>
   );
