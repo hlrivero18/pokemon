@@ -7,7 +7,7 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POKEMONS:
-            return { ...state, pokemones: [...state.pokemones, action.payload] }
+            return { ...state, pokemones: action.payload }
 
         default: return state
     }

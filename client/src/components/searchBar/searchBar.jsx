@@ -1,21 +1,39 @@
-import React, { useState } from "react";
-import style from './searchBar.module.css'
-import axios from 'axios'
-import { useDispatch, useSelector } from "react-redux";
-import { agregarNombre } from "../../redux/Actions/actions";
+import React, { useEffect, useState } from "react";
+import style from './searchBar.module.css';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export function SearchBar() {
+    const navigate = useNavigate()
+
     const [name, setName] = useState('')
-    const dispacth = useDispatch()
-    const busqueda = async()=>{
-        const {data} = await axios.get(`http://localhost:3001/pokemons/?name=${name}`)
-        dispacth(agregarNombre(data))
-    }
+    const [pokemon, setPokemon] = useState(null)
 
     const handleChange = (e) => {
         const { value } = e.target
         setName(value)
     }
+
+    const busqueda = async () => {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/pokemons/?name=${name}`)
+            setPokemon(data)
+        } catch (error) {
+             console.log(error)
+        }
+
+    }
+
+    useEffect(() => {
+     try {
+        if (pokemon) {
+            navigate(`/detail/${pokemon.id}`);
+        }
+     } catch (error) {
+        console.log('error')
+     }
+    },[pokemon])
+
 
     return (
         <div className={style.container}>

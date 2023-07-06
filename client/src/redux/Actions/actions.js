@@ -1,6 +1,6 @@
 import { ADD_POKEMONS } from "./actions-types";
 
-export const agregarNombre = (pokemon) => {
+export const agregarPokemon = (pokemon) => {
     return {
         type: ADD_POKEMONS,
         payload: pokemon

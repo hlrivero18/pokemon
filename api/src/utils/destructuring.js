@@ -1,6 +1,6 @@
 module.exports = (data) => {
     const { id, name, stats, height, weight, sprites, types } = data;
-    const tipos = types.map(tipo => tipo.type.name)
+    const tipos = types.map(tipo => tipo.type)
     const pokemon = {
         id,
         name,
@@ -10,7 +10,7 @@ module.exports = (data) => {
         defensa: stats[2].base_stat,
         altura: height,
         peso: weight,
-        tipos
+        types: tipos
     }
     return pokemon
 }

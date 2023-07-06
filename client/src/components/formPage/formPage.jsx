@@ -10,7 +10,7 @@ export function FormPage() {
         defensa: '',
         altura: '',
         peso: '',
-        tipos: [],
+        types: [],
     })
     const { name, imagen, vida, defensa, ataque, altura, peso } = inputs
 
@@ -43,9 +43,9 @@ export function FormPage() {
     }
     const handleChangeType = (e) => {
         const { checked, value } = e.target;
-        checked ? setInputs({ ...inputs, tipos: [...inputs.tipos, value] })
+        checked ? setInputs({ ...inputs, types: [...inputs.types, value] })
             :
-            setInputs({ ...inputs, tipos: inputs.tipos.filter(t => t !== value) })
+            setInputs({ ...inputs, types: inputs.types.filter(t => t !== value) })
     }
 
     const handleClick = (e) => {

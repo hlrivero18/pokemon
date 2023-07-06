@@ -1,12 +1,19 @@
 const axios = require('axios')
 const destructuring = require('../utils/destructuring')
 const pokeURL = 'https://pokeapi.co/api/v2/pokemon?limit=48' //'https://pokeapi.co/api/v2/pokemon'
-const { Pokemon } = require('../db')
+const { Pokemon, Type } = require('../db')
 
 async function getAllPokemon() {
 
         //consultamos la base de datos...
-        const pokeDB =  await Pokemon.findAll()
+        const pokeDB =  await Pokemon.findAll({include:{
+                model: Type,
+                through: {
+                        attributes: []
+                }
+        }})
+
+
 
         //consultamos la api...
 

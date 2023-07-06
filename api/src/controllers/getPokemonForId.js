@@ -13,7 +13,12 @@ async function getPokemonForId(id) {
     //Buscamos primero en la DB
 
     if (ID) {
-        const pokemonEncon = await Pokemon.findOne({ where: { id: id }, include: Type })
+        const pokemonEncon = await Pokemon.findOne({ where: { id: id }, include:{
+            model: Type,
+                through: {
+                        attributes: []
+                }
+        } })
         if (pokemonEncon !== null) { return pokemonEncon }
     }
 
@@ -22,7 +27,7 @@ async function getPokemonForId(id) {
         const { data } = await axios.get(pokeUrl + id)
         return destructuring(data)
     } catch (error) {
-        throw new Error('El pokemon buscado por ID no fue encontrado')
+        throw new Error('El ID o el nombre que ingresaste no coincide con ningun pokemon')
     }
 }
 

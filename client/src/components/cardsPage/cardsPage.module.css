@@ -1,3 +1,7 @@
+.containerAll{
+    background-color: #394867;
+}
+
 .container{
     background-color: #394867;
     display: flex;
