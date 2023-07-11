@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { agregarPokemon } from "../../redux/Actions/actions";
+import { agregarPokemon, ordernarPorTipo, filtroPorL, filtroPorA } from "../../redux/Actions/actions";
+import style from './filterOrder.module.css'
 
 export function OrderFilter() {
     const [tipos, setTipos] = useState(null)
@@ -18,31 +19,43 @@ export function OrderFilter() {
     }
 
     const handleChange = (event) => {
-        const { value } = event.target
+        const { value } = event.target;
         datos(value)
+    }
+    const handleOrder = (event) => {
+        const {value} = event.target;
+        dispatch(ordernarPorTipo(value))
+    }
+    const handleFilter = (event)=>{
+        const {value} = event.target;
+        dispatch(filtroPorL(value))
+    }
+    const handlerFilterAtaque = (event)=> {
+        const {value} = event.target;
+        dispatch(filtroPorA(value)) 
     }
 
     useEffect(() => {
         types()
     }, [])
     return (
-        <div>
+        <div className={style.container}>
             <select name="origen" id="10100" onChange={handleChange}>
                 <option value="ALL">-Pokemones-</option>
                 <option value="DB">Mis pokemones</option>
                 <option value="API">Pokemones de la App</option>
                 <option value="ALL">Todos los pokemones</option>
             </select>
-            <select name="tipos" id="10101">
+            <select name="tipos" id="10101" onChange={handleOrder}>
                 <option value="">-Tipo-</option>
-                {tipos !== null && tipos.map(t => <option value={t.name}>{t.name}</option>)}
+                {tipos !== null && tipos.map((t, i) => <option key={i} value={t.name}>{t.name}</option>)}
             </select>
-            <select name="orderAlfa" id="10102">
+            <select name="orderAlfa" id="10102" onChange={handleFilter}>
                 <option value="">-A-Z-</option>
                 <option value="AA">Ascendente</option>
                 <option value="DA">Descendente</option>
             </select>
-            <select name="orderAta" id="10103">
+            <select name="orderAta" id="10103" onChange={handlerFilterAtaque}>
                 <option value="">-Ataque-</option>
                 <option value="AA">Ascendente</option>
                 <option value="DA">Descendente</option>

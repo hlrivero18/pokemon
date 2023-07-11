@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { CardPage } from "../cardPage/cardPage";
+import React, { useEffect} from "react";
 import style from './cardsPage.module.css'
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
 import { agregarPokemon } from "../../redux/Actions/actions";
 import { OrderFilter } from "../filterOrder/filterOrder";
+import { Pagination } from "../paginationPage/paginationPage";
 
 export function CardsPage() {
 
@@ -26,12 +26,12 @@ export function CardsPage() {
     return (
         <div className={style.containerAll}>
             <OrderFilter />
+            {console.log(pokemones)}
             <div className={style.container}>
                 {pokemones.length < 1 ?
                     (<p className={style.loading}>...Cargando</p>)
-                    : (pokemones.map((pokemon) => (
-                        <CardPage key={pokemon.id} pokemon={pokemon} />
-                    ))
+                    : (
+                        <Pagination elementosPorPagina={12} pokemones={pokemones}/>
                     )
                 }
             </div>
@@ -40,5 +40,12 @@ export function CardsPage() {
     )
 }
 
-{/* {pokeRedux.map((pokemon) => (
-                <CardPage key={pokemon.id} pokemon={pokemon}/>))} */}
+{/* <div className={style.container}>
+                {pokemones.length < 1 ?
+                    (<p className={style.loading}>...Cargando</p>)
+                    : (pokemones.map((pokemon) => (
+                        <CardPage key={pokemon.id} pokemon={pokemon} />
+                    ))
+                    )
+                }
+            </div> */}

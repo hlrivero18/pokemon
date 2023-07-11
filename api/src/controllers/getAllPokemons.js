@@ -1,6 +1,6 @@
 const axios = require('axios')
 const destructuring = require('../utils/destructuring')
-const pokeURL = 'https://pokeapi.co/api/v2/pokemon?limit=48' //'https://pokeapi.co/api/v2/pokemon'
+const pokeURL = 'https://pokeapi.co/api/v2/pokemon?limit=96' //'https://pokeapi.co/api/v2/pokemon'
 const { Pokemon, Type } = require('../db')
 
 async function getAllPokemon() {
