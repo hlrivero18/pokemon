@@ -18,6 +18,7 @@ export function SearchBar() {
         try {
             const { data } = await axios.get(`http://localhost:3001/pokemons/?name=${name}`)
             setPokemon(data)
+            setName('')
         } catch (error) {
              console.log(error)
         }

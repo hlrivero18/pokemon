@@ -13,7 +13,7 @@ async function getAllPokemon() {
                 }
         }})
 
-
+        pokeDB.reverse()
 
         //consultamos la api...
 

@@ -10,19 +10,27 @@ async function postPokemon(pokemon) {
     }
 
     //Verifico si ya existe un pokemon creado con ese nombre
-    const pokemonDB = await Pokemon.findAll({where: {name : name}})
-    if(pokemonDB.length > 0){
-        throw new Error('Ya existe un pokemon creado con ese nombre, recuerda que los pokemones no pueden tener el mismo nombre')
-    }else{// De no haber ninguno me crea el pokemon en mi DB y lo asocia a los tipos de la tabla Type
-        const pokeDB = await Pokemon.create({ name, imagen, vida, ataque, defensa, altura, peso })
-        pokeDB.addTypes(types)
+    const [pokeDB, created] = await Pokemon.findOrCreate({
+        where: { name },
+        defaults: { imagen, vida, ataque, defensa, altura, peso }
+    });
+    //si no fue creado quiere decir que existe...
+    if (!created) {
+        throw new Error('Ya existe un pokemon creado con ese nombre, recuerda que los pokemones no pueden tener el mismo nombre');
     }
-    const Pokemones = await Pokemon.findAll({include:{
-        model: Type,
-                through: {
-                        attributes: []
-                }
-    }})
-    return Promise.all(Pokemones)
+
+    await pokeDB.addTypes(types);
+
+    const Pokemones = await Pokemon.findOne({
+        where: { name },
+        include: {
+            model: Type,
+            through: { attributes: [] }
+        }
+    });
+
+    return Pokemones;
+
 }
+
 module.exports = postPokemon

@@ -1,10 +1,76 @@
 .container{
+    margin-top: 10px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 .form{
     display: grid;
     width: 500px;
     justify-content: center;
+    background-color: #fdeca6;
+    padding: 15px;
+    border-radius: 10px;
+    border: 5px solid #ffc600;
+    font-size: 13px;
 }
+
+form label{
+    margin-top: 5px;
+}
+
+.input{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.input input{
+    display: block;
+}
+
+.input div{
+    display: grid;
+    justify-content: center;
+    margin: 5px;
+}
+
+.peso{
+    display: grid;
+    justify-content: center;
+    margin: 5px;
+}
+
+.peso input{
+    display: block;
+    width: auto;
+}
+.peso div{
+    display: grid;
+    justify-content: center;
+}
+
+
+.types{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.types label{
+    display: flex;
+    justify-content: start;
+    font-size: 13px;
+}
+
+.form button{
+    margin: 10px;
+}
+
+.errorType{
+    font-size: 12px;
+    margin-top: 5px;
+    color: red;
+    position:fixed;
+}
+
+
+

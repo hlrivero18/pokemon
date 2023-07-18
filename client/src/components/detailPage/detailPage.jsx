@@ -29,11 +29,10 @@ export function DetailPage() {
 
     return (
         <div className={style.container}>
-            {console.log(error)}
             {error ?
                 <p>{error}</p>
                 :
-                <div>
+                <div className={style.divUno}>
                     <img src={imagen} className={style.imagen} alt="imagen de un pokemon" />
                     <div className={style.info}>
                         <h1>{name}</h1>

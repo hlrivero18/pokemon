@@ -1,28 +1,40 @@
-import { ADD_POKEMONS, ORDER_FOR_TYPE, FILTER_FOR_L, FILTER_FOR_A } from '../Actions/actions-types';
+import { ADD_POKEMONS, ORDER_FOR_TYPE, FILTER_FOR_L, FILTER_FOR_A, ORDER_FOR_ORIGIN, RESET_STATE } from '../Actions/actions-types';
 
 const initialState = {
     pokemones: [],
+    pokemonesDB: [],
+    pokemonesAPI: [],
     allPokemones: []
 }
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POKEMONS:
-            return { ...state, pokemones: action.payload, allPokemones: action.payload }
+            return { ...state, pokemones: action.payload.ALL, pokemonesDB: action.payload.DB, pokemonesAPI: action.payload.API, allPokemones: action.payload.ALL }
+        case ORDER_FOR_ORIGIN:
+            if(action.payload === 'DB'){
+                return {...state, pokemones: state.pokemonesDB}
+            }
+            if(action.payload === 'API'){
+                return{...state, pokemones: state.pokemonesAPI}
+            }
+            if(action.payload === 'ALL'){
+                return{...state, pokemones: state.allPokemones}
+            }
         case ORDER_FOR_TYPE:
             let copia1 = state.allPokemones;
             return {...state, pokemones: copia1.filter(p => {
                 return p.types.some(t => t.name === action.payload)
             })}
         case FILTER_FOR_L:
-            let copy1 = state.allPokemones;
+            let copy1 = state.pokemones;
             if(action.payload === 'AA'){
                 return {
                     ...state, pokemones: copy1.sort((a, b)=>{
                         if(a.name < b.name) return -1
                         if(a.name > b.name) return 1
                         return 0
-                    }).map(p => p)
+                    })
                 }
             }else{
                 return {
@@ -30,20 +42,22 @@ const rootReducer = (state = initialState, action) => {
                         if(a.name < b.name) return 1
                         if(a.name > b.name) return -1
                         return 0
-                    }).map(p => p)
+                    })
                 }
             }
         case FILTER_FOR_A:
             let copia3 = state.pokemones;
             if(action.payload === 'AA'){
                 return{
-                    ...state, pokemones: copia3.sort((a,b)=> b.ataque - a.ataque).map(p => p)
+                    ...state, pokemones: copia3.sort((a,b)=> b.ataque - a.ataque)
                 }
             }else{
                 return{
-                    ...state, pokemones: copia3.sort((a,b)=> a.ataque - b.ataque).map(p => p)
+                    ...state, pokemones: copia3.sort((a,b)=> a.ataque - b.ataque)
                 }
             }
+        case RESET_STATE:
+            return{...state, pokemones: [], pokemonesDB: [], pokemonesAPI: []}
         default: return state
     }
 

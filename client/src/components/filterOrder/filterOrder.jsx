@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { agregarPokemon, ordernarPorTipo, filtroPorL, filtroPorA } from "../../redux/Actions/actions";
+import { ordernarPorTipo, filtroPorL, filtroPorA, orderForOrigin } from "../../redux/Actions/actions";
 import style from './filterOrder.module.css'
 
 export function OrderFilter() {
@@ -13,15 +13,12 @@ export function OrderFilter() {
         const { data } = await axios.get('http://localhost:3001/pokemons/types')
         setTipos(data)
     }
-    const datos = async (propiedad) => {
-        const { data } = await axios.get('http://localhost:3001/pokemons');
-        dispatch(agregarPokemon(data[propiedad]))
+
+    const handleChangeOrigin = (event)=>{
+        const {value} = event.target;
+        dispatch(orderForOrigin(value))
     }
 
-    const handleChange = (event) => {
-        const { value } = event.target;
-        datos(value)
-    }
     const handleOrder = (event) => {
         const {value} = event.target;
         dispatch(ordernarPorTipo(value))
@@ -40,7 +37,7 @@ export function OrderFilter() {
     }, [])
     return (
         <div className={style.container}>
-            <select name="origen" id="10100" onChange={handleChange}>
+            <select name="origen" id="10100" onChange={handleChangeOrigin}>
                 <option value="ALL">-Pokemones-</option>
                 <option value="DB">Mis pokemones</option>
                 <option value="API">Pokemones de la App</option>
