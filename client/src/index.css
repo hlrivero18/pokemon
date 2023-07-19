@@ -9,6 +9,7 @@ body {
   font-family: 'IBM Plex Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #3d3d3d;
 }
 
 code {

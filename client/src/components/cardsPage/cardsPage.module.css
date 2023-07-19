@@ -1,13 +1,10 @@
-.containerAll{
-    background-color: #394867;
-}
+
 
 .container{
-    background-color: #394867;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 100vh;
+    height: 90vh;
 }
 
 .loading{

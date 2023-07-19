@@ -1,8 +1,14 @@
 .container{
-    background-color: #212A3E;
+    background-color: #d31b22;
     width: 100%;
     height: 70px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 1fr;
+    justify-content: center;
     align-items: center;
-    justify-content:space-evenly;
+}
+
+.container img{
+    height: 60px;
+    margin-left: 15px;
 }

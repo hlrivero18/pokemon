@@ -3,13 +3,14 @@
 }
 
 .input{
-    height: 3em;
+    border: 2px solid white;
+    border-radius: 0 7px 7px 0;
 }
 
 .input input{
     width: 25em;
     height: 3em;
-    border: 3px solid #9BA4B5;
+    border: 2px solid #9BA4B5;
     outline: none;
 }
 

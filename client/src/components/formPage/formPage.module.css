@@ -15,9 +15,7 @@
     font-size: 13px;
 }
 
-form label{
-    margin-top: 5px;
-}
+
 
 .input{
     display: grid;
@@ -53,6 +51,7 @@ form label{
 .types{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-area: 3px;
 }
 
 .types label{
@@ -67,10 +66,20 @@ form label{
 
 .errorType{
     font-size: 12px;
-    margin-top: 5px;
     color: red;
-    position:fixed;
+    position:absolute;
+    align-self: end;
 }
 
+.containerType{
+    display: grid;
+    grid-template-rows: 5fr 1fr;
+}
+
+.campo {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin-bottom: 2px;
+}
 
 

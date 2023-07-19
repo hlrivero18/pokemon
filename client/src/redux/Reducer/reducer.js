@@ -1,10 +1,12 @@
-import { ADD_POKEMONS, ORDER_FOR_TYPE, FILTER_FOR_L, FILTER_FOR_A, ORDER_FOR_ORIGIN, RESET_STATE } from '../Actions/actions-types';
+import { ADD_POKEMONS, ORDER_FOR_TYPE, FILTER_FOR_L, FILTER_FOR_A, ORDER_FOR_ORIGIN, RESET_STATE, POKEMONS_SEARCH, IS_LOADING } from '../Actions/actions-types';
 
 const initialState = {
     pokemones: [],
     pokemonesDB: [],
     pokemonesAPI: [],
-    allPokemones: []
+    allPokemones: [],
+    pokemonesBusq: [],
+    isLoading: true
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -55,6 +57,14 @@ const rootReducer = (state = initialState, action) => {
                 return{
                     ...state, pokemones: copia3.sort((a,b)=> a.ataque - b.ataque)
                 }
+            }
+        case POKEMONS_SEARCH:
+            return {
+                ...state, pokemones: action.payload
+            }
+        case IS_LOADING:
+            return {
+                ...state, isLoading: action.payload
             }
         case RESET_STATE:
             return{...state, pokemones: [], pokemonesDB: [], pokemonesAPI: []}

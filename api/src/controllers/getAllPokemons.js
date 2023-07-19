@@ -24,7 +24,7 @@ async function getAllPokemon() {
                 return destructuring(data)
         })
         const pokeAPI = await Promise.all(pokeInfo)
-
+        //guardo en un objeto los resultados
         const pokemones = {
                 DB: pokeDB,
                 API: pokeAPI,

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_POKEMONS, CREATE_POKEMON, FILTER_FOR_A, FILTER_FOR_L, ORDER_FOR_ORIGIN, ORDER_FOR_TYPE, RESET_STATE } from "./actions-types";
+import { ADD_POKEMONS, CREATE_POKEMON, FILTER_FOR_A, FILTER_FOR_L, ORDER_FOR_ORIGIN, ORDER_FOR_TYPE, RESET_STATE, POKEMONS_SEARCH, IS_LOADING } from "./actions-types";
 
 export const agregarPokemon = (pokemon) => {
     return {
@@ -50,5 +50,19 @@ export const orderForOrigin = (origen)=>{
 export const resetState = ()=>{
     return{
         type: RESET_STATE
+    }
+}
+
+export const pokemonsSearch = (busqueda)=>{
+    return{
+        type: POKEMONS_SEARCH,
+        payload: busqueda
+    }
+}
+
+export const loading = (value)=>{
+    return{
+        type: IS_LOADING,
+        payload: value
     }
 }

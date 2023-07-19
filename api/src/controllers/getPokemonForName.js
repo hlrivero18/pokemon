@@ -6,6 +6,7 @@ const pokeUrl = 'https://pokeapi.co/api/v2/pokemon/'
 
 async function getPokemonForName(name) {
     name = name.toLowerCase();
+    const result = []
     // consulto la base datos...
     const nameEncont = await Pokemon.findOne({ where: { name: name }, include:{
         model: Type,
@@ -14,16 +15,19 @@ async function getPokemonForName(name) {
                 }
     }})
     // si encontre el nombre en la DB lo retorno...
-    if (nameEncont !== null) { return nameEncont };
+    if (nameEncont !== null) { result.push(nameEncont) };
 
     //si no, lo busco en la api...
     try {
         const { data } = await axios.get(pokeUrl + name)
-        return destructuring(data)
-        
+        const resultApi = destructuring(data)
+        result.push(resultApi)
+        return result
     } catch (error) {
         //de no encontrarlo en la api significa que no existe y por ende se devuelve un error
-        throw new Error('El ID o el nombre que ingresaste no coincide con ningun pokemon')
+        if(nameEncont !== null) return result
+        
+        throw new Error(`El ID o el nombre que ingresaste no coincide con ningun pokemon`)
     }
 }
 module.exports = getPokemonForName

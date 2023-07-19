@@ -5,9 +5,10 @@ import validation from "../utils/validation";
 import validationType from "../utils/validationType";
 import { resetState } from "../../redux/Actions/actions";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 
 export function FormPage() {
-
+    const navigate = useNavigate()
     const [inputs, setInputs] = useState({
         name: '',
         vida: '',
@@ -55,80 +56,86 @@ export function FormPage() {
     const handleChangeType = (e) => {
         const { checked, value } = e.target;
         const newTypes = [...inputs.types, value]
-        
-        checked ? 
-            setInputs({ ...inputs, types: newTypes})
+
+        checked ?
+            setInputs({ ...inputs, types: newTypes })
             :
-            setInputs({ ...inputs, types: newTypes.filter(t => t !== value)})
+            setInputs({ ...inputs, types: newTypes.filter(t => t !== value) })
     }
 
     const handleClick = (e) => {
         e.preventDefault();
         if (Object.keys(error).length === 0 && Object.keys(errorType).length === 0) {
-            console.log('ya postie')
             posteo()
             dispatch(resetState())
+            navigate('/home')
         }
     }
 
     return (
         <div className={style.container}>
             <form className={style.form} onSubmit={handleClick}>
-                <label className={style.label}>Nombre</label>
-                <input type="text" name="name"
-                    placeholder="nombre de tu pokemon..." key='1'
-                    value={name} onChange={handleChange} />
-                <p className={style.errorType}>{error.name}</p>
-
-                <label className={style.label}>Imagen</label>
-                <input type="text" name="imagen"
-                    placeholder="imagen de tu pokemon" key='2'
-                    value={imagen} onChange={handleChange} />
+                <div className={style.campo}>
+                    <label className={style.label}>Nombre</label>
+                    <input type="text" name="name"
+                        placeholder="nombre de tu pokemon..." key='1'
+                        value={name} onChange={handleChange} />
+                    <p className={style.errorType}>{error.name}</p>
+                </div>
+                <div className={style.campo}>
+                    <label className={style.label}>Imagen</label>
+                    <input type="text" name="imagen"
+                        placeholder="imagen de tu pokemon" key='2'
+                        value={imagen} onChange={handleChange} />
                     <p className={style.errorType}>{error.imagen}</p>
-                <div className={style.input}>
-                    <div>
-                        <label htmlFor="">Vida</label>
-                        <input type="number" name="vida"
-                            placeholder="vida de tu pokemon..." key='3'
-                            value={vida} onChange={handleChange} />
-                            <p className={style.errorType}>{error.vida}</p>
-                    </div>
-                    <div>
-                        <label htmlFor="">Ataque</label>
-                        <input type="number" name="ataque"
-                            placeholder="ataque de tu pokemon..." key='4'
-                            value={ataque} onChange={handleChange} />
-                            <p className={style.errorType}>{error.ataque}</p>
-                    </div>
+                </div>
+                <div className={style.campo}>
+                    <label htmlFor="">Vida</label>
+                    <input type="number" name="vida"
+                        placeholder="vida de tu pokemon..." key='3'
+                        value={vida} onChange={handleChange} />
+                    <p className={style.errorType}>{error.vida}</p>
+                </div>
+                <div className={style.campo}>
+                    <label htmlFor="">Ataque</label>
+                    <input type="number" name="ataque"
+                        placeholder="ataque de tu pokemon..." key='4'
+                        value={ataque} onChange={handleChange} />
+                    <p className={style.errorType}>{error.ataque}</p>
+                </div>
+                <div className={style.campo}>
+                    <label htmlFor="">Defensa</label>
+                    <input type="number" name="defensa"
+                        placeholder="defensa de tu pokemon..." key='5'
+                        value={defensa} onChange={handleChange} />
+                    <p className={style.errorType}>{error.defensa}</p>
                 </div>
                 <div className={style.input}>
-                    <div>
-                        <label htmlFor="">Defensa</label>
-                        <input type="number" name="defensa"
-                            placeholder="defensa de tu pokemon..." key='5'
-                            value={defensa} onChange={handleChange} />
-                            <p className={style.errorType}>{error.defensa}</p>
-                    </div>
-                    <div>
+                    <div className={style.campo}>
                         <label htmlFor="">Altura</label>
                         <input type="number" name="altura"
                             placeholder="altura de tu pokemon..." key='6'
                             value={altura} onChange={handleChange} />
                     </div>
+                    <div className={style.campo}>
+                        <label htmlFor="">Peso</label>
+                        <input type="number" name="peso"
+                            placeholder="peso de tu pokemon..." key='7'
+                            value={peso} onChange={handleChange} />
+                    </div>
                 </div>
-                <div className={style.peso}>
-                    <label htmlFor="">Peso</label>
-                    <input type="number" name="peso"
-                        placeholder="peso de tu pokemon..." key='7'
-                        value={peso} onChange={handleChange} />
+
+                <div className={style.containerType}>
+                    <div className={style.types}>
+                        {tipos !== undefined &&
+                            tipos.map((t, i) => <label>
+                                <input type="checkbox" name={t.name} value={t.id} key={i} onChange={handleChangeType} /> {t.name}
+                            </label>)}
+                    </div>
+
+                    <p className={style.errorType}>{errorType.types}</p>
+
                 </div>
-                <div className={style.types}>
-                    {tipos !== undefined &&
-                        tipos.map((t, i) => <label>
-                            <input type="checkbox" name={t.name} value={t.id} key={i} onChange={handleChangeType} /> {t.name}
-                        </label>)}
-                </div>
-                <p className={style.errorType}>{errorType.types}</p>
                 <button type="submit">Crear pokemon!</button>
             </form>
         </div>

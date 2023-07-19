@@ -1,40 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from './searchBar.module.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loading, pokemonsSearch } from "../../redux/Actions/actions";
 
 export function SearchBar() {
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
     const [name, setName] = useState('')
-    const [pokemon, setPokemon] = useState(null)
 
     const handleChange = (e) => {
         const { value } = e.target
         setName(value)
     }
 
-    const busqueda = async () => {
-        try {
-            const { data } = await axios.get(`http://localhost:3001/pokemons/?name=${name}`)
-            setPokemon(data)
-            setName('')
-        } catch (error) {
-             console.log(error)
-        }
+    const datos = async () => {
 
+        axios.get(`http://localhost:3001/pokemons/?name=${name}`)
+            .then((response) => {
+                const { data } = response;
+                dispatch(loading(false))
+                dispatch(pokemonsSearch(data))
+            })
+            .catch((error) => { console.log(error.message)})
     }
 
-    useEffect(() => {
-     try {
-        if (pokemon) {
-            navigate(`/detail/${pokemon.id}`);
-        }
-     } catch (error) {
-        console.log('error')
-     }
-    },[pokemon])
+    const handleClick = () => {
+        navigate('/home')
+        dispatch(loading(true))
+        datos()
+        setName('')
+    }
 
+    // useEffect(() => {
+    //     console.log(pokemon)
+    //     if(pokemon !== null){
+    //         dispatch(pokemonsSearch(pokemon))
+    //     }
+    // }, [pokemon])
 
     return (
         <div className={style.container}>
@@ -45,7 +49,7 @@ export function SearchBar() {
                     value={name}
                     onChange={handleChange}
                 />
-                <button onClick={busqueda}>Buscar</button>
+                <button onClick={handleClick}>Buscar</button>
             </div>
 
         </div>
