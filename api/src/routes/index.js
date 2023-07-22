@@ -5,7 +5,9 @@ const getAllPokemon = require('../controllers/getAllPokemons')
 const getPokemonForId = require('../controllers/getPokemonForId')
 const getPokemonForName = require('../controllers/getPokemonForName')
 const postPokemon = require('../controllers/postPokemon')
-const types = require('../controllers/types')
+const types = require('../controllers/types');
+const deletePokemon = require('../controllers/deletePokemon');
+const deleteAll = require('../controllers/deleteAll');
 
 const router = Router();
 
@@ -53,6 +55,26 @@ router.post('/', async (req, res) =>{
         
     } catch (error) {
         res.json({error: error.message})
+    }
+})
+
+router.delete('/delete/:id', async(req, res)=>{
+    try {
+        const {id} = req.params;
+        await deletePokemon(id)
+        const pokemon = await getAllPokemon()
+        res.json(pokemon)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
+router.delete('/deleteall', async(req,  res) =>{
+    try {
+        const borrado = await deleteAll()
+        res.json({message: borrado})
+    } catch (error) {
+        res.json(error)
     }
 })
 

@@ -4,11 +4,12 @@ import style from './formPage.module.css'
 import validation from "../utils/validation";
 import validationType from "../utils/validationType";
 import { resetState } from "../../redux/Actions/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 export function FormPage() {
     const navigate = useNavigate()
+    const tipos = useSelector(state=> state.types)
     const [inputs, setInputs] = useState({
         name: '',
         vida: '',
@@ -20,14 +21,10 @@ export function FormPage() {
     })
     const { name, imagen, vida, defensa, ataque, altura, peso, types } = inputs
 
-    const [tipos, setTipos] = useState(undefined)
     const [error, setError] = useState({})
     const [errorType, setErrorType] = useState({})
 
-    const datos = async () => {
-        const { data } = await axios.get('http://localhost:3001/pokemons/types')
-        setTipos(data)
-    }
+    
 
     const posteo = async () => {
         try {
@@ -41,7 +38,6 @@ export function FormPage() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        datos()
         setErrorType(validationType(types))
     }, [types])
 

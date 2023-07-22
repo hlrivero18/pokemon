@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_POKEMONS, CREATE_POKEMON, FILTER_FOR_A, FILTER_FOR_L, ORDER_FOR_ORIGIN, ORDER_FOR_TYPE, RESET_STATE, POKEMONS_SEARCH, IS_LOADING } from "./actions-types";
+import { ADD_POKEMONS, DELETE_POKEMON, FILTER_FOR_A, FILTER_FOR_L, ORDER_FOR_ORIGIN, ORDER_FOR_TYPE, RESET_STATE, POKEMONS_SEARCH, IS_LOADING, ADD_TYPES } from "./actions-types";
 
 export const agregarPokemon = (pokemon) => {
     return {
@@ -8,12 +8,23 @@ export const agregarPokemon = (pokemon) => {
     }
 }
 
-export const crearPokemon = (pokemon) => {
-    const endPoint = 'http://localhost:3001/pokemons';
+export const borrarPokemon = (pokemon) => {
+    const endPoint = `http://localhost:3001/pokemons/delete/${pokemon.id}`;
     return async (dispatch)=>{
-        const response = await axios.post(endPoint, pokemon)
+        const response = await axios.delete(endPoint)
         return dispatch({
-            type: CREATE_POKEMON,
+            type: DELETE_POKEMON,
+            payload: response.data
+        })
+    }
+}
+
+export const addTypes = ()=>{
+    const endPoint = 'http://localhost:3001/pokemons/types';
+    return async(dispatch)=>{
+        const response = await axios.get(endPoint)
+        return dispatch({
+            type: ADD_TYPES,
             payload: response.data
         })
     }

@@ -2,7 +2,7 @@ import React, { useEffect} from "react";
 import style from './cardsPage.module.css'
 import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux";
-import { agregarPokemon, loading} from "../../redux/Actions/actions";
+import { agregarPokemon, loading } from "../../redux/Actions/actions";
 import { OrderFilter } from "../filterOrder/filterOrder";
 import { Pagination } from "../paginationPage/paginationPage";
 

@@ -7,6 +7,7 @@
 }
 
 .divUno{
+    width: 350px;
     background-color: #fdeca6;
     padding: 10px;
     border-radius: 10px;
@@ -22,6 +23,10 @@
 }
 
 .imagen{
-    width: 180px;
-    height: 180px;
+    width: 100px;
+    height: 100px;
+}
+
+.id {
+    font-size: 10px;
 }

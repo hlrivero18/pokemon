@@ -1,10 +1,12 @@
 .link{
     text-decoration: none;
+    height: 100px;
 }
 
 .container {
     display: grid;
     grid-template-columns: 40% 60%;
+    align-items: center;
     width: 300px;
     height: 100px;
     background-color: #F1F6F9;
@@ -22,8 +24,8 @@
 
 .info{
     grid-column-start: 2;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    align-self: center;
     justify-content: center;
     align-items: center;
 }
@@ -41,4 +43,19 @@
 
 .container:hover {
     transform: scale(1.10);
+}
+
+.info button {
+    background-color: red;
+    color: white;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    font-size: 10px;
+    position: absolute;
+    align-self: start;
+    justify-self: end;
+    margin:auto;
 }

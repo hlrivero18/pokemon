@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ordernarPorTipo, filtroPorL, filtroPorA, orderForOrigin } from "../../redux/Actions/actions";
 import style from './filterOrder.module.css'
 
 export function OrderFilter() {
-    const [tipos, setTipos] = useState(null)
-
+    const tipos = useSelector(state => state.types)
     const dispatch = useDispatch()
-
-    const types = async () => {
-        const { data } = await axios.get('http://localhost:3001/pokemons/types')
-        setTipos(data)
-    }
 
     const handleChangeOrigin = (event)=>{
         const {value} = event.target;
@@ -32,9 +25,6 @@ export function OrderFilter() {
         dispatch(filtroPorA(value)) 
     }
 
-    useEffect(() => {
-        types()
-    }, [])
     return (
         <div className={style.container}>
             <select name="origen" id="10100" onChange={handleChangeOrigin}>
@@ -45,7 +35,7 @@ export function OrderFilter() {
             </select>
             <select name="tipos" id="10101" onChange={handleOrder}>
                 <option value="">-Tipo-</option>
-                {tipos !== null && tipos.map((t, i) => <option key={i} value={t.name}>{t.name}</option>)}
+                {tipos !== undefined && tipos.map((t, i) => <option key={i} value={t.name}>{t.name}</option>)}
             </select>
             <select name="orderAlfa" id="10102" onChange={handleFilter}>
                 <option value="">-A-Z-</option>

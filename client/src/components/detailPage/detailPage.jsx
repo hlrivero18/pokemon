@@ -25,7 +25,7 @@ export function DetailPage() {
         return setPokemon({})
     }, [id])
 
-    const { name, vida, ataque, defensa, altura, peso, types, imagen } = pokemon
+    const { name, vida, ataque, defensa, altura, peso, types, imagen, gif } = pokemon
 
     return (
         <div className={style.container}>
@@ -33,10 +33,10 @@ export function DetailPage() {
                 <p>{error}</p>
                 :
                 <div className={style.divUno}>
-                    <img src={imagen} className={style.imagen} alt="imagen de un pokemon" />
+                    <h3 className={style.id}>ID: {id}</h3>
+                    <img src={gif === null ? imagen : gif} className={style.imagen} alt="imagen de un pokemon" />
                     <div className={style.info}>
                         <h1>{name}</h1>
-                        <h3>ID | {id}</h3>
                         <h3>VIDA    |  {vida}</h3>
                         <h3>ATAQUE  |  {ataque}</h3>
                         <h3>DEFENSA |  {defensa}</h3>

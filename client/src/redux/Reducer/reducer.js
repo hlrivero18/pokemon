@@ -1,10 +1,11 @@
-import { ADD_POKEMONS, ORDER_FOR_TYPE, FILTER_FOR_L, FILTER_FOR_A, ORDER_FOR_ORIGIN, RESET_STATE, POKEMONS_SEARCH, IS_LOADING } from '../Actions/actions-types';
+import { ADD_POKEMONS, ORDER_FOR_TYPE, FILTER_FOR_L, FILTER_FOR_A, ORDER_FOR_ORIGIN, RESET_STATE, POKEMONS_SEARCH, IS_LOADING, DELETE_POKEMON, ADD_TYPES } from '../Actions/actions-types';
 
 const initialState = {
     pokemones: [],
     pokemonesDB: [],
     pokemonesAPI: [],
     allPokemones: [],
+    types: [],
     pokemonesBusq: [],
     isLoading: true
 }
@@ -13,6 +14,8 @@ const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POKEMONS:
             return { ...state, pokemones: action.payload.ALL, pokemonesDB: action.payload.DB, pokemonesAPI: action.payload.API, allPokemones: action.payload.ALL }
+        case ADD_TYPES:
+            return {...state, types: action.payload}
         case ORDER_FOR_ORIGIN:
             if(action.payload === 'DB'){
                 return {...state, pokemones: state.pokemonesDB}
@@ -65,6 +68,10 @@ const rootReducer = (state = initialState, action) => {
         case IS_LOADING:
             return {
                 ...state, isLoading: action.payload
+            }
+        case DELETE_POKEMON:
+            return{
+                ...state, pokemones: action.payload.ALL, pokemonesDB: action.payload.DB, allPokemones: action.payload.ALL
             }
         case RESET_STATE:
             return{...state, pokemones: [], pokemonesDB: [], pokemonesAPI: []}
