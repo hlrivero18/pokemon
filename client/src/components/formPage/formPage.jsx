@@ -3,7 +3,7 @@ import axios from "axios";
 import style from './formPage.module.css'
 import validation from "../utils/validation";
 import validationType from "../utils/validationType";
-import { resetState } from "../../redux/Actions/actions";
+import { loading, resetState } from "../../redux/Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -63,6 +63,7 @@ export function FormPage() {
         e.preventDefault();
         if (Object.keys(error).length === 0 && Object.keys(errorType).length === 0) {
             posteo()
+            dispatch(loading(true))
             dispatch(resetState())
             navigate('/home')
         }

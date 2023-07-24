@@ -9,8 +9,8 @@ module.exports = (data) => {
         vida: stats[0].base_stat,
         ataque: stats[1].base_stat,
         defensa: stats[2].base_stat,
-        altura: height,
-        peso: weight,
+        altura: height + ' cm',
+        peso: weight + ' kg',
         types: tipos
     }
     return pokemon

@@ -23,14 +23,17 @@ export function SearchBar() {
                 dispatch(loading(false))
                 dispatch(pokemonsSearch(data))
             })
-            .catch((error) => { console.log(error.message)})
+            .catch((error) => { console.log(error.message) })
     }
 
     const handleClick = () => {
-        navigate('/home')
-        dispatch(loading(true))
-        datos()
-        setName('')
+        if (name.length !== 0) {
+            navigate('/home')
+            dispatch(loading(true))
+            datos()
+            setName('')
+        }
+
     }
 
     // useEffect(() => {

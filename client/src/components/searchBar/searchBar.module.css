@@ -25,3 +25,14 @@
     background-color: #9BA4B5;
     font-family: 'IBM Plex Mono', monospace;
 }
+
+@media (max-width: 768px){
+    .input input{
+        width: 15em;
+        height: 2.5em;
+    }
+    .input button{
+        width: 4em;
+        height: 2.5em;
+    }
+}

@@ -4,22 +4,23 @@ import { Link } from "react-router-dom";
 import { colorType } from "../utils/colorType";
 import { esUUID } from "../utils/esUUId";
 import { useDispatch } from "react-redux";
-import { borrarPokemon } from "../../redux/Actions/actions";
+import { borrarPokemon, loading } from "../../redux/Actions/actions";
 
 
 export function CardPage({ pokemon }) {
     const { id, name, imagen, types } = pokemon
     const dispatch = useDispatch()
-    const handleClick = () => {
-        console.log('funciono')
-        dispatch(borrarPokemon(pokemon))
+    const handleClick = async () => {
+        dispatch(loading(true))
+        await dispatch(borrarPokemon(pokemon))
+        dispatch(loading(false))
     }
 
     return (
         <>
             {id &&
                 <div className={style.container}>
-                    <Link className={style.link} to={`/detail/${id}`}>
+                    <Link className={style.linkuno} to={`/detail/${id}`}>
                         <img src={imagen} alt="imagen de un pokemon" />
                     </Link>
                     <div className={style.info}>

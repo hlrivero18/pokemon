@@ -12,11 +12,10 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
     },
     imagen: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     vida: {
       type: DataTypes.INTEGER,
@@ -31,11 +30,11 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     altura: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
     peso: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     }
   }, { timestamps: false });
