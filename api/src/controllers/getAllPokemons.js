@@ -12,6 +12,7 @@ async function getAllPokemon() {
                         attributes: []
                 }
         }})
+        
         pokeDB.reverse()
 
         //consultamos la api...

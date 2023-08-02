@@ -20,8 +20,9 @@ export function SearchBar() {
         axios.get(`http://localhost:3001/pokemons/?name=${name}`)
             .then((response) => {
                 const { data } = response;
-                dispatch(loading(false))
                 dispatch(pokemonsSearch(data))
+                dispatch(loading(false))
+               
             })
             .catch((error) => { console.log(error.message) })
     }
@@ -35,13 +36,6 @@ export function SearchBar() {
         }
 
     }
-
-    // useEffect(() => {
-    //     console.log(pokemon)
-    //     if(pokemon !== null){
-    //         dispatch(pokemonsSearch(pokemon))
-    //     }
-    // }, [pokemon])
 
     return (
         <div className={style.container}>

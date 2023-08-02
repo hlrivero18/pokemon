@@ -9,20 +9,14 @@ export function DetailPage() {
     const [pokemon, setPokemon] = useState({})
     const [error, setError] = useState(false)
 
-    const datos = async () => {
-        try {
-            const { data } = await axios.get(`http://localhost:3001/pokemons/${id}`);
+    useEffect(() => {
+        axios.get(`http://localhost:3001/pokemons/${id}`).then(({data})=>{
             setPokemon(data)
             setError(false)
-        } catch ({ response }) {
-            const { error } = response.data
+        }).catch(({response})=>{
+            const {error} = response.data
             setError(error)
-        }
-
-    }
-
-    useEffect(() => {
-        datos()
+        })
         return setPokemon({})
     }, [id])
 

@@ -39,7 +39,7 @@ const rootReducer = (state = initialState, action) => {
                         if(a.name < b.name) return -1
                         if(a.name > b.name) return 1
                         return 0
-                    })
+                    }).map(p => p)
                 }
             }else{
                 return {
@@ -47,18 +47,18 @@ const rootReducer = (state = initialState, action) => {
                         if(a.name < b.name) return 1
                         if(a.name > b.name) return -1
                         return 0
-                    })
+                    }).map(p => p)
                 }
             }
         case FILTER_FOR_A:
             let copia3 = state.pokemones;
             if(action.payload === 'AA'){
                 return{
-                    ...state, pokemones: copia3.sort((a,b)=> b.ataque - a.ataque)
+                    ...state, pokemones: copia3.sort((a,b)=> b.ataque - a.ataque).map(p => p)
                 }
             }else{
                 return{
-                    ...state, pokemones: copia3.sort((a,b)=> a.ataque - b.ataque)
+                    ...state, pokemones: copia3.sort((a,b)=> a.ataque - b.ataque).map(p => p)
                 }
             }
         case POKEMONS_SEARCH:

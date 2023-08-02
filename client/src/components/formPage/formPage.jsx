@@ -31,7 +31,7 @@ export function FormPage() {
             const response = await axios.post('http://localhost:3001/pokemons', inputs)
             console.log(response.data)
         } catch (error) {
-            console.log(error)
+            window.alert(error)
         }
     }
 
@@ -59,13 +59,13 @@ export function FormPage() {
             setInputs({ ...inputs, types: newTypes.filter(t => t !== value) })
     }
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault();
         if (Object.keys(error).length === 0 && Object.keys(errorType).length === 0) {
-            posteo()
             dispatch(loading(true))
-            dispatch(resetState())
             navigate('/home')
+            await posteo()
+            dispatch(resetState())
         }
     }
 

@@ -34,7 +34,7 @@ export function CardsPage() {
                     : (
                         pokemones.error ? (<p className={style.loading}>{pokemones.error}</p>)
                         : (
-                           <Pagination elementosPorPagina={12} pokemones={pokemones}/> 
+                           <Pagination elementosPorPagina={12} pokemon={pokemones}/> 
                         )
                     )
                 }

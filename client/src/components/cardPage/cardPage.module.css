@@ -8,6 +8,7 @@
     margin: 10px;
     transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
     border-radius: 10px;
+    /* animation: opacity 2s ease; */
 }
 
 .link{
@@ -64,4 +65,13 @@
     align-self: start;
     justify-self: end;
     margin:auto;
+}
+
+@keyframes opacity {
+    from{
+        opacity: 0,50;
+    }
+    to{
+        opacity: 0;
+    }
 }

@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CardPage } from "../cardPage/cardPage";
 import style from './paginationPage.module.css'
+import { useSelector } from "react-redux";
 
 export function Pagination(props) {
-    const { elementosPorPagina, pokemones } = props;
+    
+    const {pokemones} = useSelector(state => state)
+    const { elementosPorPagina, pokemon } = props;
     const [paginaActual, setPaginaActual] = useState(1);
-    const paginasTotales = Math.ceil(pokemones.length / elementosPorPagina)
+    const paginasTotales = Math.ceil(pokemon.length / elementosPorPagina)
 
     const ultimoElemento = paginaActual * elementosPorPagina;
     const primerElemento = ultimoElemento - elementosPorPagina;
-    const elementosActuales = pokemones.slice(primerElemento, ultimoElemento);
+    const elementosActuales = pokemon.slice(primerElemento, ultimoElemento);
 
     const handlePage = (num) => {
         setPaginaActual(num)
     }
+
+    useEffect(()=>{
+        handlePage(1)
+    }, [pokemones])
 
     return (
         <div>
