@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loading, pokemonsSearch } from "../../redux/Actions/actions";
+import { GETNAME } from "../../consultas";
 
 export function SearchBar() {
     const navigate = useNavigate()
@@ -17,7 +18,7 @@ export function SearchBar() {
 
     const datos = async () => {
 
-        axios.get(`http://localhost:3001/pokemons/?name=${name}`)
+        axios.get(GETNAME + name)
             .then((response) => {
                 const { data } = response;
                 dispatch(pokemonsSearch(data))

@@ -6,6 +6,7 @@ import validationType from "../utils/validationType";
 import { loading, resetState } from "../../redux/Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { POST } from "../../consultas";
 
 export function FormPage() {
     const navigate = useNavigate()
@@ -28,7 +29,7 @@ export function FormPage() {
 
     const posteo = async () => {
         try {
-            const response = await axios.post('http://localhost:3001/pokemons', inputs)
+            const response = await axios.post(POST, inputs)
             console.log(response.data)
         } catch (error) {
             window.alert(error)

@@ -61,8 +61,53 @@
 }
 
 .form button{
-    margin: 10px;
+    width: auto;
+    height: auto;
+    border-style: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #9BA4B5;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    border: solid 2px #ffc600;
+    padding: 10px;
 }
+.form button:hover {
+    animation: shake3856 0.3s linear infinite both;
+   }
+   
+   @keyframes shake3856 {
+    0% {
+     -webkit-transform: translate(0);
+     transform: translate(0);
+    }
+   
+    20% {
+     -webkit-transform: translate(-2px, 2px);
+     transform: translate(-2px, 2px);
+    }
+   
+    40% {
+     -webkit-transform: translate(-2px, -2px);
+     transform: translate(-2px, -2px);
+    }
+   
+    60% {
+     -webkit-transform: translate(2px, 2px);
+     transform: translate(2px, 2px);
+    }
+   
+    80% {
+     -webkit-transform: translate(2px, -2px);
+     transform: translate(2px, -2px);
+    }
+   
+    100% {
+     -webkit-transform: translate(0);
+     transform: translate(0);
+    }
+   }
 
 .errorType{
     font-size: 12px;
@@ -81,5 +126,6 @@
     grid-template-rows: 1fr 1fr 1fr;
     margin-bottom: 2px;
 }
+
 
 

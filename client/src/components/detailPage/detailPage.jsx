@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from 'react-router-dom'
 import style from './detailPage.module.css'
 import { colorType } from "../utils/colorType";
+import { GETID } from "../../consultas";
 
 export function DetailPage() {
     const { id } = useParams();
@@ -10,7 +11,7 @@ export function DetailPage() {
     const [error, setError] = useState(false)
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/pokemons/${id}`).then(({data})=>{
+        axios.get(GETID + id).then(({data})=>{
             setPokemon(data)
             setError(false)
         }).catch(({response})=>{

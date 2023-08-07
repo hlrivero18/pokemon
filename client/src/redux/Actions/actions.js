@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ADD_POKEMONS, DELETE_POKEMON, FILTER_FOR_A, FILTER_FOR_L, ORDER_FOR_ORIGIN, ORDER_FOR_TYPE, RESET_STATE, POKEMONS_SEARCH, IS_LOADING, ADD_TYPES } from "./actions-types";
+import { DELETE, TYPESURL } from "../../consultas";
 
 export const agregarPokemon = (pokemon) => {
     return {
@@ -9,7 +10,7 @@ export const agregarPokemon = (pokemon) => {
 }
 
 export const borrarPokemon = (pokemon) => {
-    const endPoint = `http://localhost:3001/pokemons/delete/${pokemon.id}`;
+    const endPoint = DELETE + pokemon.id
     return async (dispatch)=>{
         const response = await axios.delete(endPoint)
         return dispatch({
@@ -20,7 +21,7 @@ export const borrarPokemon = (pokemon) => {
 }
 
 export const addTypes = ()=>{
-    const endPoint = 'http://localhost:3001/pokemons/types';
+    const endPoint = TYPESURL;
     return async(dispatch)=>{
         const response = await axios.get(endPoint)
         return dispatch({

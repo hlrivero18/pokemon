@@ -15,7 +15,18 @@ export function Pagination(props) {
     const elementosActuales = pokemon.slice(primerElemento, ultimoElemento);
 
     const handlePage = (num) => {
-        setPaginaActual(num)
+        if(num > 0 && num <= paginasTotales) setPaginaActual(num)
+        
+    }
+
+    const numerosDePagina = ()=>{
+        let paginas = []
+        for(let i = paginaActual; i <= Math.min(paginaActual + 4, paginasTotales); i++){
+            paginas.push(
+                <button key={i} onClick={()=> handlePage(i)}>{i}</button>
+            )
+        }
+        return paginas
     }
 
     useEffect(()=>{
@@ -31,12 +42,15 @@ export function Pagination(props) {
             </div>
 
             <div className={style.buttons}>
-                {Array.from({ length: paginasTotales }, (_, indice) => (
-                    <button key={indice} onClick={() => handlePage(indice + 1)}>
-                        {indice + 1}
-                    </button>
-                ))}
+                <button onClick={()=> handlePage(paginaActual - 1)}>{'<<prev'}</button>
+                    {numerosDePagina()}
+                <button onClick={()=> handlePage(paginaActual + 1)}>{'next>>'}</button>
             </div>
         </div>
     )
 }
+ {/* {Array.from({ length: paginasTotales }, (_, indice) => (
+                    <button key={indice} onClick={() => handlePage(indice + 1)}>
+                        {indice + 1}
+                    </button>
+                ))} */}

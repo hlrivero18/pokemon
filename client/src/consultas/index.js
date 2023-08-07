@@ -1,0 +1,6 @@
+export const GET = 'https://backendpokemon-production-f1f6.up.railway.app/pokemons'
+export const GETID = 'https://backendpokemon-production-f1f6.up.railway.app/pokemons/'
+export const GETNAME = 'https://backendpokemon-production-f1f6.up.railway.app/pokemons/?name='
+export const POST = 'https://backendpokemon-production-f1f6.up.railway.app/pokemons'
+export const TYPESURL = 'https://backendpokemon-production-f1f6.up.railway.app/pokemons/types'
+export const DELETE = 'https://backendpokemon-production-f1f6.up.railway.app/pokemons/delete/'

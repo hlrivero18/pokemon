@@ -10,8 +10,8 @@
 
 .buttons button{
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: auto;
+    height: auto;
     border: 3px solid white;
     background-color: #9BA4B5;
     cursor: pointer;

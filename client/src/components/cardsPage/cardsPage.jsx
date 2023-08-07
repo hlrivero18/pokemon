@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { agregarPokemon, loading } from "../../redux/Actions/actions";
 import { OrderFilter } from "../filterOrder/filterOrder";
 import { Pagination } from "../paginationPage/paginationPage";
+import { GET } from "../../consultas";
 
 export function CardsPage() {
 
@@ -13,7 +14,7 @@ export function CardsPage() {
     const dispatch = useDispatch()
 
     const datos = async () => {
-        const { data } = await axios.get('http://localhost:3001/pokemons');
+        const { data } = await axios.get(GET);
         dispatch(loading(false))
         dispatch(agregarPokemon(data))
     }
