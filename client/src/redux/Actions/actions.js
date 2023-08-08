@@ -1,11 +1,15 @@
 import axios from "axios";
 import { ADD_POKEMONS, DELETE_POKEMON, FILTER_FOR_A, FILTER_FOR_L, ORDER_FOR_ORIGIN, ORDER_FOR_TYPE, RESET_STATE, POKEMONS_SEARCH, IS_LOADING, ADD_TYPES } from "./actions-types";
-import { DELETE, TYPESURL } from "../../consultas";
+import { DELETE, TYPESURL, GET } from "../../consultas";
 
-export const agregarPokemon = (pokemon) => {
-    return {
-        type: ADD_POKEMONS,
-        payload: pokemon
+export const agregarPokemon = () => {
+    const endPoint = GET
+    return async (dispatch)=>{
+        const response = await axios.get(endPoint)
+        return dispatch({
+            type: ADD_POKEMONS,
+            payload: response.data
+        })
     }
 }
 

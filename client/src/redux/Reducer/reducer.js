@@ -13,52 +13,54 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POKEMONS:
-            return { ...state, pokemones: action.payload.ALL, pokemonesDB: action.payload.DB, pokemonesAPI: action.payload.API, allPokemones: action.payload.ALL }
+            return { ...state, pokemones: action.payload.ALL, pokemonesDB: action.payload.DB, pokemonesAPI: action.payload.API, allPokemones: action.payload.ALL, isLoading: false }
         case ADD_TYPES:
-            return {...state, types: action.payload}
+            return { ...state, types: action.payload }
         case ORDER_FOR_ORIGIN:
-            if(action.payload === 'DB'){
-                return {...state, pokemones: state.pokemonesDB}
+            if (action.payload === 'DB') {
+                return { ...state, pokemones: state.pokemonesDB }
             }
-            if(action.payload === 'API'){
-                return{...state, pokemones: state.pokemonesAPI}
+            if (action.payload === 'API') {
+                return { ...state, pokemones: state.pokemonesAPI }
             }
-            if(action.payload === 'ALL'){
-                return{...state, pokemones: state.allPokemones}
+            if (action.payload === 'ALL') {
+                return { ...state, pokemones: state.allPokemones }
             }
         case ORDER_FOR_TYPE:
             let copia1 = state.allPokemones;
-            return {...state, pokemones: copia1.filter(p => {
-                return p.types.some(t => t.name === action.payload)
-            })}
+            return {
+                ...state, pokemones: copia1.filter(p => {
+                    return p.types.some(t => t.name === action.payload)
+                })
+            }
         case FILTER_FOR_L:
             let copy1 = state.pokemones;
-            if(action.payload === 'AA'){
+            if (action.payload === 'AA') {
                 return {
-                    ...state, pokemones: copy1.sort((a, b)=>{
-                        if(a.name < b.name) return -1
-                        if(a.name > b.name) return 1
+                    ...state, pokemones: copy1.sort((a, b) => {
+                        if (a.name < b.name) return -1
+                        if (a.name > b.name) return 1
                         return 0
                     }).map(p => p)
                 }
-            }else{
+            } else {
                 return {
-                    ...state, pokemones: copy1.sort((a, b)=>{
-                        if(a.name < b.name) return 1
-                        if(a.name > b.name) return -1
+                    ...state, pokemones: copy1.sort((a, b) => {
+                        if (a.name < b.name) return 1
+                        if (a.name > b.name) return -1
                         return 0
                     }).map(p => p)
                 }
             }
         case FILTER_FOR_A:
             let copia3 = state.pokemones;
-            if(action.payload === 'AA'){
-                return{
-                    ...state, pokemones: copia3.sort((a,b)=> b.ataque - a.ataque).map(p => p)
+            if (action.payload === 'AA') {
+                return {
+                    ...state, pokemones: copia3.sort((a, b) => b.ataque - a.ataque).map(p => p)
                 }
-            }else{
-                return{
-                    ...state, pokemones: copia3.sort((a,b)=> a.ataque - b.ataque).map(p => p)
+            } else {
+                return {
+                    ...state, pokemones: copia3.sort((a, b) => a.ataque - b.ataque).map(p => p)
                 }
             }
         case POKEMONS_SEARCH:
@@ -70,11 +72,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state, isLoading: action.payload
             }
         case DELETE_POKEMON:
-            return{
+            return {
                 ...state, pokemones: action.payload.ALL, pokemonesDB: action.payload.DB, allPokemones: action.payload.ALL
             }
         case RESET_STATE:
-            return{...state, pokemones: [], pokemonesDB: [], pokemonesAPI: []}
+            return { ...state, pokemones: [], pokemonesDB: [], pokemonesAPI: [] }
         default: return state
     }
 

@@ -5,7 +5,7 @@ import {NavBar} from './components/navBar/navBar'
 import { CardsPage } from './components/cardsPage/cardsPage';
 import { DetailPage } from './components/detailPage/detailPage';
 //dependecias
-import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { FormPage } from './components/formPage/formPage';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -19,7 +19,7 @@ function App() {
 
   useEffect(()=>{
     dispatch(addTypes())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="App">
