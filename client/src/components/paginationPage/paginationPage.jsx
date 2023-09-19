@@ -23,7 +23,7 @@ export function Pagination(props) {
         let paginas = []
         for(let i = paginaActual; i <= Math.min(paginaActual + 4, paginasTotales); i++){
             paginas.push(
-                <button key={i} onClick={()=> handlePage(i)}>{i}</button>
+                <button className={i === paginaActual && style.buttonA} key={i} onClick={()=> handlePage(i)}>{i}</button>
             )
         }
         return paginas
