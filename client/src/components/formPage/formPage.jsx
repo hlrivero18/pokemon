@@ -7,6 +7,7 @@ import { loading, resetState } from "../../redux/Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { POST } from "../../consultas";
+import UploadImage from "./uploadImage";
 
 export function FormPage() {
     const navigate = useNavigate()
@@ -50,6 +51,11 @@ export function FormPage() {
         setInputs(newPokemon)
         setError(validation(newPokemon))
     }
+    const handleImageUpload = (secure_url) => {
+        const newPokemon = { ...inputs, imagen: secure_url };
+        setInputs(newPokemon);
+        setError(validation(newPokemon))
+    };
     const handleChangeType = (e) => {
         const { checked, value } = e.target;
         const newTypes = [...inputs.types, value]
@@ -82,9 +88,12 @@ export function FormPage() {
                 </div>
                 <div className={style.campo}>
                     <label className={style.label}>Imagen</label>
-                    <input type="text" name="imagen"
+                    {/* <input type="text" name="imagen"
                         placeholder="imagen de tu pokemon" key='2'
-                        value={imagen} onChange={handleChange} />
+                        value={imagen} onChange={handleChange} /> */}
+                        <UploadImage handleImageUpload={handleImageUpload}/>
+                        {/* <input type="file" name="imagen"
+                        key='2' value={imagen} onChange={handleChange}/> */}
                     <p className={style.errorType}>{error.imagen}</p>
                 </div>
                 <div className={style.campo}>

@@ -37,6 +37,17 @@ export function SearchBar() {
         }
 
     }
+    const handleKey = (event) => {
+        if (event.keyCode === 13) { // 13 es el código de tecla para "Enter"
+          console.log('soy un enter')
+          if (name.length !== 0) {
+            navigate('/home')
+            dispatch(loading(true))
+            datos()
+            setName('')
+        }
+        }
+      }
 
     return (
         <div className={style.container}>
@@ -46,6 +57,7 @@ export function SearchBar() {
                     placeholder="Escribe el nombre de tu pokemon..."
                     value={name}
                     onChange={handleChange}
+                    onKeyDown={handleKey}
                 />
                 <button onClick={handleClick}>Buscar</button>
             </div>

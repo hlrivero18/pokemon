@@ -76,7 +76,12 @@
 .form button:hover {
     animation: shake3856 0.3s linear infinite both;
    }
-   
+.inputFile{
+    border: solid 2px #ffc600;
+    border-radius: 5px;
+    background-color: #f7f6f1;
+}
+
    @keyframes shake3856 {
     0% {
      -webkit-transform: translate(0);
