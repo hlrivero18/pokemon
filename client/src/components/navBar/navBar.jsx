@@ -22,7 +22,7 @@ export function NavBar() {
             </div>
             <div className={style.btn}>
                 <button className={style.boton}>
-                    <a className={style.a} href="https://web-portafolio-hlrivero18.vercel.app/">Acerca de mí</a>
+                    <a className={style.a} href="https://portafolio-v2-blue.vercel.app/">Acerca de mí</a>
                 </button>
             </div>
             <div className={style.btnMobile}>
