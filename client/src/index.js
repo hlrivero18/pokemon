@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store'
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://backendpokemon-s54j.onrender.com/';
+axios.defaults.baseURL = 'https://backendpokemon-p9eh.onrender.com/';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
