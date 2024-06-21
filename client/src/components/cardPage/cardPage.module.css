@@ -8,6 +8,7 @@
     margin: 10px;
     transition: all 0.8s cubic-bezier(0.15, 0.83, 0.66, 1);
     border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     /* animation: opacity 2s ease; */
 }
 

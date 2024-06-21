@@ -13,6 +13,8 @@
     border-radius: 10px;
     border: 5px solid #ffc600;
     font-size: 13px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    margin: 20px;
 }
 
 
