@@ -31,7 +31,7 @@ export function NavBar() {
                 </Link>
             </div>
             <div className={style.btnProfile}>
-                <a className={style.a} href="https://web-portafolio-hlrivero18.vercel.app/"><MdAccountCircle /></a>
+                <a className={style.a} href="https://portafolio-v2-blue.vercel.app/"><MdAccountCircle /></a>
             </div>
         </div>
     )
