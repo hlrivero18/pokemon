@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from 'react-router-dom'
 import style from './detailPage.module.css'
-import { colorType } from "../utils/colorType";
+import { colorType } from "../../components/utils/colorType";
 import { GETID } from "../../consultas";
 
 export function DetailPage() {

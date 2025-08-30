@@ -4,8 +4,8 @@ import style from './paginationPage.module.css'
 import { useSelector } from "react-redux";
 
 export function Pagination(props) {
-    
-    const {pokemones} = useSelector(state => state)
+
+    const { pokemones } = useSelector(state => state)
     const { elementosPorPagina, pokemon } = props;
     const [paginaActual, setPaginaActual] = useState(1);
     const paginasTotales = Math.ceil(pokemon.length / elementosPorPagina)
@@ -15,21 +15,34 @@ export function Pagination(props) {
     const elementosActuales = pokemon.slice(primerElemento, ultimoElemento);
 
     const handlePage = (num) => {
-        if(num > 0 && num <= paginasTotales) setPaginaActual(num)
-        
-    }
-
-    const numerosDePagina = ()=>{
-        let paginas = []
-        for(let i = paginaActual; i <= Math.min(paginaActual + 4, paginasTotales); i++){
-            paginas.push(
-                <button className={i === paginaActual && style.buttonA} key={i} onClick={()=> handlePage(i)}>{i}</button>
-            )
+        if (num > 0 && num <= paginasTotales) {
+            setPaginaActual(num);
         }
-        return paginas
-    }
+    };
 
-    useEffect(()=>{
+    const numerosDePagina = () => {
+        const maxVisible = 5; // cantidad de botones visibles
+        const bloque = Math.floor((paginaActual - 1) / maxVisible);
+        const inicio = bloque * maxVisible + 1;
+        const fin = Math.min(inicio + maxVisible - 1, paginasTotales);
+
+        const pages = [];
+        for (let i = inicio; i <= fin; i++) {
+            pages.push(i);
+        }
+
+        return pages.map((page) => (
+            <button
+                key={page}
+                onClick={() => handlePage(page)}
+                className={`${style.button} ${page === paginaActual ? style.buttonA : ""}`}
+            >
+                {page}
+            </button>
+        ));
+    };
+
+    useEffect(() => {
         handlePage(1)
     }, [pokemones])
 
@@ -42,14 +55,14 @@ export function Pagination(props) {
             </div>
 
             <div className={style.buttons}>
-                <button onClick={()=> handlePage(paginaActual - 1)}>{'<<prev'}</button>
-                    {numerosDePagina()}
-                <button onClick={()=> handlePage(paginaActual + 1)}>{'next>>'}</button>
+                <button onClick={() => handlePage(paginaActual - 1)}>{'<<'}</button>
+                {numerosDePagina()}
+                <button onClick={() => handlePage(paginaActual + 1)}>{'>>'}</button>
             </div>
         </div>
     )
 }
- {/* {Array.from({ length: paginasTotales }, (_, indice) => (
+{/* {Array.from({ length: paginasTotales }, (_, indice) => (
                     <button key={indice} onClick={() => handlePage(indice + 1)}>
                         {indice + 1}
                     </button>

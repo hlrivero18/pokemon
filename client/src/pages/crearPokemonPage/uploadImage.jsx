@@ -10,8 +10,10 @@ export default function UploadImage(props) {
 
     const handleChange = (e) => {
         const file = e.target.files[0];
-        setImageFile(file)
-        setImagePreview(URL.createObjectURL(file))
+        if(file){
+            setImageFile(file)
+            setImagePreview(URL.createObjectURL(file))            
+        }
     }
 
     const submitImage = () => {

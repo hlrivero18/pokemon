@@ -19,7 +19,7 @@ export function CardPage({ pokemon }) {
     return (
         <>
             {id &&
-                <div className={style.container}>
+                <div className={style.container} key={id}>
                     <Link className={style.linkuno} to={`/detail/${id}`}>
                         <img src={imagen} alt="imagen de un pokemon" />
                     </Link>

@@ -14,7 +14,7 @@ export default function validation(input){
         error['name'] = name
     }
     if(!imagen){
-        error['imagen'] = '⚠️ la imagen debe ser una url valida'
+        error['imagen'] = '⚠️ debe seleccionar una imagen'
     }
     if(!vida){
         error['vida'] = '⚠️ este campo debe contener numeros'
