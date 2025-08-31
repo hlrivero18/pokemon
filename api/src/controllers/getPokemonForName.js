@@ -1,43 +1,33 @@
-const { Op } = require("sequelize");
-const axios = require("axios");
-const { Pokemon, Type } = require("../db"); // ajustá según tu import
-const pokeUrl = "https://pokeapi.co/api/v2/pokemon/";
+const { Pokemon, Type } = require('../db')
+const axios = require('axios')
+const destructuring = require('../utils/destructuring')
+const pokeUrl = 'https://pokeapi.co/api/v2/pokemon/'
+
 
 async function getPokemonForName(name) {
-  name = name.toLowerCase();
+    name = name.toLowerCase();
+    const result = []
+    // consulto la base datos...
+    const nameEncont = await Pokemon.findOne({ where: { name: name }, include:{
+        model: Type,
+                through: {
+                        attributes: []
+                }
+    }})
+    // si encontre el nombre en la DB lo agrego...
+    if (nameEncont !== null) { result.push(nameEncont) };
 
-  // 1. Buscar en la base de datos todos los que empiecen con "name"
-  const pokemonsDB = await Pokemon.findAll({ 
-    where: { 
-      name: { [Op.iLike]: `${name}%` } 
-    }, 
-    include: {
-      model: Type,
-      through: { attributes: [] }
+    // lo busco en la api...
+    try {
+        const { data } = await axios.get(pokeUrl + name)
+        const resultApi = destructuring(data)
+        result.push(resultApi)
+        return result
+    } catch (error) {
+        //de no encontrarlo en la api significa que no existe y por ende se devuelve un error
+        if(nameEncont !== null) return result
+        
+        throw new Error(`El ID o el nombre que ingresaste no coincide con ningun pokemon`)
     }
-  });
-
-  // 2. Buscar en la API solo si se ingresó un nombre exacto (ej: "pikachu")
-  let pokemonApi = null;
-  try {
-    const { data } = await axios.get(pokeUrl + name);
-    pokemonApi = destructuring(data);
-  } catch (error) {
-    // si no existe en la API, no pasa nada
-  }
-
-  // 3. Combinar resultados (si lo encontré en API y no está en DB, lo agrego)
-  let result = [...pokemonsDB];
-  if (pokemonApi && !pokemonsDB.some(p => p.name === pokemonApi.name)) {
-    result.push(pokemonApi);
-  }
-
-  // 4. Si no hay resultados, lanzar error
-  if (result.length === 0) {
-    throw new Error(`El nombre ingresado no coincide con ningún Pokémon`);
-  }
-
-  return result;
 }
-
-module.exports = getPokemonForName;
+module.exports = getPokemonForName
