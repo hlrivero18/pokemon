@@ -35,15 +35,16 @@ export function HomePage() {
         <div className={style.containerAll}>
             <OrderFilter />
             <div className={style.container}>
-                {isLoading ?
-                    (<p className={style.loading}>...Cargando</p>)
-                    : (
-                        pokemones.error ? (<p className={style.loading}>{pokemones.error}</p>)
-                            : (
-                                <Pagination elementosPorPagina={itemsPorPagina} pokemon={pokemones} />
-                            )
+                {isLoading ? (
+                    <p className={style.loading}>...Cargando</p>
+                    ) : (
+                    pokemones?.error ? (
+                        <p className={style.loading}>{pokemones.error}</p>
+                    ) : (
+                        <Pagination elementosPorPagina={itemsPorPagina} pokemon={pokemones} />
                     )
-                }
+                )}
+
             </div>
 
         </div>

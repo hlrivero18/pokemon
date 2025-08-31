@@ -7,7 +7,6 @@ import { DetailPage } from './pages/detailPage/detailPage';
 import { CrearPokemonPage } from './pages/crearPokemonPage/crearPokemonPage';
 //dependecias
 import { Route, Routes, useLocation } from "react-router-dom";
-
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTypes } from './redux/Actions/actions';
