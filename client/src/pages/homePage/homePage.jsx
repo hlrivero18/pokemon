@@ -41,7 +41,7 @@ export function HomePage() {
                     pokemones?.error ? (
                         <p className={style.loading}>{pokemones.error}</p>
                     ) : (
-                        <Pagination elementosPorPagina={itemsPorPagina} pokemon={pokemones} />
+                        <Pagination elementosPorPagina={itemsPorPagina} pokemon={pokemones || []} />
                     )
                 )}
 
