@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from './homePage.module.css'
 import { useDispatch, useSelector } from "react-redux";
-import { agregarPokemon } from "../../redux/Actions/actions";
+import { agregarPokemon, agregarTipos, loading} from "../../redux/Actions/actions";
 import { OrderFilter } from "../../components/filterOrder/filterOrder";
 import { Pagination } from "../../components/paginationPage/paginationPage";
 
@@ -25,10 +25,9 @@ export function HomePage() {
 
     useEffect(() => {
         handleResize()
-        if (pokemones.length < 1) {
-            dispatch(agregarPokemon())
-        }
-    }, [pokemones, dispatch])
+        dispatch(agregarTipos())
+        dispatch(agregarPokemon())
+    }, [dispatch])
  
 
     return (
@@ -39,9 +38,12 @@ export function HomePage() {
                     <p className={style.loading}>...Cargando</p>
                     ) : (
                     pokemones?.error ? (
-                        <p className={style.loading}>{pokemones.error}</p>
+                        <p className={style.loading}>{"Tuvimos un problema :( vuelve a intentarlo"}</p>
                     ) : (
-                        <Pagination elementosPorPagina={itemsPorPagina} pokemon={pokemones || []} />
+                        pokemones.length == 0 ? 
+                        (<p className={style.loading}>{"No hay pokemones para mostrar"}</p>)
+                        :
+                        (<Pagination elementosPorPagina={itemsPorPagina} />)
                     )
                 )}
 

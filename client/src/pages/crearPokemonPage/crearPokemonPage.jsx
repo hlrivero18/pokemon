@@ -6,12 +6,13 @@ import validationType from "../../components/utils/validationType";
 import { loading, resetState } from "../../redux/Actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { POST } from "../../consultas";
+import { CREAR_POKEMON } from "../../consultas";
 import UploadImage from "./uploadImage";
 
 export function CrearPokemonPage() {
     const navigate = useNavigate()
-    const tipos = useSelector(state=> state.types)
+    const tipos = useSelector(state => state.types)
+    const isLoading = useSelector(state => state.isLoading)
     const [inputs, setInputs] = useState({
         name: '',
         vida: '',
@@ -26,11 +27,11 @@ export function CrearPokemonPage() {
     const [error, setError] = useState({})
     const [errorType, setErrorType] = useState({})
 
-    
+
 
     const posteo = async () => {
         try {
-            const response = await axios.post(POST, inputs)
+            const response = await axios.post(CREAR_POKEMON, inputs)
             console.log(response.data)
         } catch (error) {
             window.alert(error)
@@ -70,81 +71,88 @@ export function CrearPokemonPage() {
         e.preventDefault();
         if (Object.keys(error).length === 0 && Object.keys(errorType).length === 0) {
             dispatch(loading(true))
-            navigate('/home')
             await posteo()
-            dispatch(resetState())
+            navigate('/home')
         }
     }
 
     return (
-        <div className={style.container}>
-            <form className={style.form} onSubmit={handleClick}>
-                <div className={style.campo}>
-                    <label className={style.label}>Nombre*</label>
-                    <input type="text" name="name"
-                        placeholder="nombre de tu pokemon..." key='1'
-                        value={name} onChange={handleChange} />
-                    <p className={style.errorType}>{error.name}</p>
+        <div>
+            {isLoading ? (
+                <div className={style.containerLoading}>
+                   <p className={style.loading}>...Creando</p> 
                 </div>
-                <div className={style.campo}>
-                    <label className={style.label}>Imagen*</label>
-                    {/* <input type="text" name="imagen"
+            ) : (
+                <div className={style.container}>
+                    <form className={style.form} onSubmit={handleClick}>
+                        <div className={style.campo}>
+                            <label className={style.label}>Nombre*</label>
+                            <input type="text" name="name"
+                                placeholder="nombre de tu pokemon..." key='1'
+                                value={name} onChange={handleChange} />
+                            <p className={style.errorType}>{error.name}</p>
+                        </div>
+                        <div className={style.campo}>
+                            <label className={style.label}>Imagen*</label>
+                            {/* <input type="text" name="imagen"
                         placeholder="imagen de tu pokemon" key='2'
                         value={imagen} onChange={handleChange} /> */}
-                        <UploadImage handleImageUpload={handleImageUpload}/>
-                        {/* <input type="file" name="imagen"
+                            <UploadImage handleImageUpload={handleImageUpload} />
+                            {/* <input type="file" name="imagen"
                         key='2' value={imagen} onChange={handleChange}/> */}
-                    <p className={style.errorType}>{error.imagen}</p>
-                </div>
-                <div className={style.campo}>
-                    <label htmlFor="">Vida*</label>
-                    <input type="number" name="vida"
-                        placeholder="vida de tu pokemon..." key='3'
-                        value={vida} onChange={handleChange} />
-                    <p className={style.errorType}>{error.vida}</p>
-                </div>
-                <div className={style.campo}>
-                    <label htmlFor="">Ataque*</label>
-                    <input type="number" name="ataque"
-                        placeholder="ataque de tu pokemon..." key='4'
-                        value={ataque} onChange={handleChange} />
-                    <p className={style.errorType}>{error.ataque}</p>
-                </div>
-                <div className={style.campo}>
-                    <label htmlFor="">Defensa*</label>
-                    <input type="number" name="defensa"
-                        placeholder="defensa de tu pokemon..." key='5'
-                        value={defensa} onChange={handleChange} />
-                    <p className={style.errorType}>{error.defensa}</p>
-                </div>
-                <div className={style.input}>
-                    <div className={style.campo}>
-                        <label htmlFor="">Altura</label>
-                        <input type="number" name="altura"
-                            placeholder="altura de tu pokemon..." key='6'
-                            value={altura} onChange={handleChange} />
-                    </div>
-                    <div className={style.campo}>
-                        <label htmlFor="">Peso</label>
-                        <input type="number" name="peso"
-                            placeholder="peso de tu pokemon..." key='7'
-                            value={peso} onChange={handleChange} />
-                    </div>
-                </div>
+                            <p className={style.errorType}>{error.imagen}</p>
+                        </div>
+                        <div className={style.campo}>
+                            <label htmlFor="">Vida*</label>
+                            <input type="number" name="vida"
+                                placeholder="vida de tu pokemon..." key='3'
+                                value={vida} onChange={handleChange} />
+                            <p className={style.errorType}>{error.vida}</p>
+                        </div>
+                        <div className={style.campo}>
+                            <label htmlFor="">Ataque*</label>
+                            <input type="number" name="ataque"
+                                placeholder="ataque de tu pokemon..." key='4'
+                                value={ataque} onChange={handleChange} />
+                            <p className={style.errorType}>{error.ataque}</p>
+                        </div>
+                        <div className={style.campo}>
+                            <label htmlFor="">Defensa*</label>
+                            <input type="number" name="defensa"
+                                placeholder="defensa de tu pokemon..." key='5'
+                                value={defensa} onChange={handleChange} />
+                            <p className={style.errorType}>{error.defensa}</p>
+                        </div>
+                        <div className={style.input}>
+                            <div className={style.campo}>
+                                <label htmlFor="">Altura</label>
+                                <input type="number" name="altura"
+                                    placeholder="altura de tu pokemon..." key='6'
+                                    value={altura} onChange={handleChange} />
+                            </div>
+                            <div className={style.campo}>
+                                <label htmlFor="">Peso</label>
+                                <input type="number" name="peso"
+                                    placeholder="peso de tu pokemon..." key='7'
+                                    value={peso} onChange={handleChange} />
+                            </div>
+                        </div>
 
-                <div className={style.containerType}>
-                    <div className={style.types}>
-                        {tipos !== undefined &&
-                            tipos.map((t, i) => <label>
-                                <input type="checkbox" name={t.name} value={t.id} key={i} onChange={handleChangeType} /> {t.name}
-                            </label>)}
-                    </div>
+                        <div className={style.containerType}>
+                            <div className={style.types}>
+                                {tipos !== undefined &&
+                                    tipos.map((t, i) => <label>
+                                        <input type="checkbox" name={t.name} value={t.id} key={i} onChange={handleChangeType} /> {t.name}
+                                    </label>)}
+                            </div>
 
-                    <p className={style.errorType}>{errorType.types}</p>
+                            <p className={style.errorType}>{errorType.types}</p>
 
+                        </div>
+                        <button type="submit">Crear pokemon!</button>
+                    </form>
                 </div>
-                <button type="submit">Crear pokemon!</button>
-            </form>
+            )}
         </div>
     )
 }

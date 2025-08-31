@@ -1,6 +1,6 @@
-export const GET = '/pokemons'
+export const GET_ALL_POKEMONS = '/pokemons'
 export const GETID = '/pokemons/'
 export const GETNAME = '/pokemons/?name='
-export const POST = '/pokemons'
+export const CREAR_POKEMON = '/pokemons'
 export const TYPESURL = '/pokemons/types'
 export const DELETE = '/pokemons/delete/'

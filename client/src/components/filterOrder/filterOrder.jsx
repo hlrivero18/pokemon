@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ordernarPorTipo, filtroPorL, filtroPorA, orderForOrigin } from "../../redux/Actions/actions";
+import { ordernarPorTipo, filtroPorL, filtroPorA, orderForOrigin, loading } from "../../redux/Actions/actions";
 import style from './filterOrder.module.css'
 
 export function OrderFilter() {

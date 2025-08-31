@@ -6,13 +6,14 @@ import { useSelector } from "react-redux";
 export function Pagination(props) {
 
     const { pokemones } = useSelector(state => state)
-    const { elementosPorPagina, pokemon } = props;
+    const { elementosPorPagina } = props;
     const [paginaActual, setPaginaActual] = useState(1);
-    const paginasTotales = Math.ceil(pokemon.length / elementosPorPagina)
+    const paginasTotales = Array.isArray(pokemones) ? Math.ceil(pokemones.length / elementosPorPagina) : 0;
+
 
     const ultimoElemento = paginaActual * elementosPorPagina;
     const primerElemento = ultimoElemento - elementosPorPagina;
-    const elementosActuales = pokemon.slice(primerElemento, ultimoElemento);
+    const elementosActuales = Array.isArray(pokemones) ? pokemones.slice(primerElemento, ultimoElemento) : [];
 
     const handlePage = (num) => {
         if (num > 0 && num <= paginasTotales) {

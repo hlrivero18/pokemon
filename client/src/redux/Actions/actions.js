@@ -1,11 +1,12 @@
 import axios from "axios";
 import { ADD_POKEMONS, DELETE_POKEMON, FILTER_FOR_A, FILTER_FOR_L, ORDER_FOR_ORIGIN, ORDER_FOR_TYPE, RESET_STATE, POKEMONS_SEARCH, IS_LOADING, ADD_TYPES } from "./actions-types";
-import { DELETE, TYPESURL, GET } from "../../consultas";
+import { DELETE, TYPESURL, GET_ALL_POKEMONS } from "../../consultas";
 
 export const agregarPokemon = () => {
-    const endPoint = GET
+    const endPoint = GET_ALL_POKEMONS
     return async (dispatch)=>{
         const response = await axios.get(endPoint)
+        // console.log(response.data)
         return dispatch({
             type: ADD_POKEMONS,
             payload: response.data
@@ -24,7 +25,7 @@ export const borrarPokemon = (pokemon) => {
     }
 }
 
-export const addTypes = ()=>{
+export const agregarTipos = ()=>{
     const endPoint = TYPESURL;
     return async(dispatch)=>{
         const response = await axios.get(endPoint)

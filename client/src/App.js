@@ -15,11 +15,6 @@ import { addTypes } from './redux/Actions/actions';
 function App() {
   //logica de las rutas
   const {pathname} = useLocation();
-  const dispatch = useDispatch()
-
-  useEffect(()=>{
-    dispatch(addTypes())
-  }, [dispatch])
 
   return (
     <div className="App">
