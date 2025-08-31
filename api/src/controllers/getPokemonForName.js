@@ -1,6 +1,6 @@
 const { Op } = require("sequelize");
 const axios = require("axios");
-const { Pokemon, Type } = require("./db"); // ajustá según tu import
+const { Pokemon, Type } = require("../db"); // ajustá según tu import
 const pokeUrl = "https://pokeapi.co/api/v2/pokemon/";
 
 async function getPokemonForName(name) {
