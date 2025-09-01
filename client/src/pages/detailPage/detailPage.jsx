@@ -43,7 +43,7 @@ export function DetailPage() {
                             <h3>DEFENSA |  {defensa}</h3>
                             {altura !== null && <h3>ALTURA  |  {altura}</h3>}
                             {peso !== null && <h3>PESO    |  {peso}</h3>}
-                            <h3>TIPOS | {types !== undefined && types.map(t => <span style={{ backgroundColor: colorType(t.name) }}> {t.name} </span>)}</h3>
+                            <h3>TIPOS | {types !== undefined && types.map(t => <span key={t} style={{ backgroundColor: colorType(t.name) }}> {t.name} </span>)}</h3>
                         </div>
                     </div>
             }

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 export function Pagination(props) {
 
-    const { pokemones } = useSelector(state => state)
+    const pokemones = useSelector(state => state.pokemones)
     const { elementosPorPagina } = props;
     const [paginaActual, setPaginaActual] = useState(1);
     const paginasTotales = Array.isArray(pokemones) ? Math.ceil(pokemones.length / elementosPorPagina) : 0;
@@ -50,8 +50,8 @@ export function Pagination(props) {
     return (
         <div>
             <div className={style.container}>
-                {elementosActuales.map((pokemon, indice) => (
-                    <CardPage key={indice} pokemon={pokemon} />
+                {elementosActuales.map((pokemon) => (
+                    <CardPage key={pokemon?.id} pokemon={pokemon} />
                 ))}
             </div>
 

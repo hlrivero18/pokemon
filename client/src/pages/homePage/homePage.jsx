@@ -7,8 +7,8 @@ import { Pagination } from "../../components/paginationPage/paginationPage";
 
 export function HomePage() {
 
-    const { pokemones } = useSelector(state => state)
-    const { isLoading } = useSelector(state => state)
+    const pokemones = useSelector(state => state.pokemones)
+    const isLoading = useSelector(state => state.isLoading)
     const [itemsPorPagina, setItemsPorPagina] = useState(6)
     const dispatch = useDispatch()
 
@@ -41,7 +41,7 @@ export function HomePage() {
                     pokemones?.error ? (
                         <p className={style.loading}>{"Tuvimos un problema :( vuelve a intentarlo"}</p>
                     ) : (
-                        pokemones.length == 0 ? 
+                        Array.isArray(pokemones) && pokemones.length === 0 ? 
                         (<p className={style.loading}>{"No hay pokemones para mostrar"}</p>)
                         :
                         (<Pagination elementosPorPagina={itemsPorPagina} />)

@@ -19,7 +19,7 @@ export function CardPage({ pokemon }) {
     return (
         <>
             {id &&
-                <div className={style.container} key={id}>
+                <div className={style.container}>
                     <Link className={style.linkuno} to={`/detail/${id}`}>
                         <img src={imagen} alt="imagen de un pokemon" />
                     </Link>
@@ -27,7 +27,7 @@ export function CardPage({ pokemon }) {
                         {esUUID(id) && <button onClick={handleClick}>x</button>}
                         <Link className={style.link} to={`/detail/${id}`}>
                             <h2>{name}</h2>
-                            {types.map(t => <p style={{ backgroundColor: colorType(t.name) }}>{t.name}</p>)}
+                            {types.map((t, i) => (<p key={i} style={{ backgroundColor: colorType(t.name) }}>{t.name}</p>))}
                         </Link>
                     </div>
                 </div>
