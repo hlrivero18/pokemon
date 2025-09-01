@@ -25,6 +25,7 @@ export function HomePage() {
 
     useEffect(() => {
         handleResize()
+        dispatch(loading(true))
         dispatch(agregarTipos())
         dispatch(agregarPokemon())
     }, [dispatch])
